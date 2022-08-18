@@ -161,31 +161,43 @@ namespace dev
             //Structs = Value Type != do Refecence Types
 
 
-            Product mouse = new Product(1, "Mouse gamer", 299.97);
-
+            var mouse = new Product(1, "Mouse gamer", 299.97, EProductType.Product);
+            var manutencaoEletrica = new Product(2, "Manutenção elétrica residencial", 500, EProductType.Service);
             mouse.Id = 55;
 
             Console.WriteLine(mouse.Id);
             Console.WriteLine(mouse.Name);
             Console.WriteLine(mouse.Price);
+            Console.WriteLine(mouse.Type);
+            Console.WriteLine((int)mouse.Type);
         }
     }
 
     struct Product //Fica fora de Class, pois compete com a mesma.
     {
-        public Product(int id, string name, double price)//Constructor
+        public Product(int id, string name, double price, EProductType type)//Constructor
         {
             Id = id; //Case sensitive, os ids definidos são diferentes;
             Name = name;
             Price = price;
+            Type = type;
         }
 
         public int Id;
         public string Name; //Criar Property iniciando sempre com maiusculo;
         public double Price;
+        public EProductType Type;
         public double PriceInDolar(double dolar)
         {
             return Price * dolar;
         }
     }
+
+    enum EProductType
+    {
+
+        Product = 1,
+        Service = 2
+    }
+
 }
